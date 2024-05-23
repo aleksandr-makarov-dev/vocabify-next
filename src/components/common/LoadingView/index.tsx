@@ -23,7 +23,9 @@ const LoadingView: FC<LoadingViewProps> = ({
         <h5 className="font-semibold text-lg">
           {title ?? "Please wait for a while"}
         </h5>
-        <p className="text-gray-700">{subtitle ?? "Loading..."}</p>
+        <p className="text-gray-700 dark:text-gray-300">
+          {subtitle ?? "Loading..."}
+        </p>
       </div>
     </div>
   );
