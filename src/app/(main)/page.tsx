@@ -20,7 +20,7 @@ export default function Home() {
         <h5 className="text-lg font-medium mb-1.5">Requirements</h5>
         <ul className="pl-3 list-disc list-inside">
           <li>
-            Minimal number of terms to create test -{" "}
+            Minimum number of terms to create test -{" "}
             <span className="font-bold">4</span>
           </li>
         </ul>
