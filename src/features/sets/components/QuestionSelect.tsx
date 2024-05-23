@@ -58,7 +58,7 @@ const QuestionSelect: FC<QuestionSelectProps> = ({
                   >
                     <FormLabel
                       className={cn(
-                        "font-normal cursor-pointer flex items-center gap-1.5 w-full p-5 rounded-md border border-border hover:bg-muted",
+                        "font-normal cursor-pointer flex items-center gap-1.5 w-full p-5 rounded-md border h-full border-border hover:bg-muted",
                         state !== "idle" &&
                           (option.isCorrect
                             ? "bg-green-100 border-green-600 hover:bg-green-100 dark:bg-green-700 dark:border-green-800 hover:dark:bg-green-700"
@@ -67,6 +67,7 @@ const QuestionSelect: FC<QuestionSelectProps> = ({
                     >
                       <FormControl>
                         <RadioGroupItem
+                          className="shrink-0"
                           disabled={state !== "idle"}
                           value={option.value}
                         />
