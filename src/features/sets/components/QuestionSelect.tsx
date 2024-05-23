@@ -61,8 +61,8 @@ const QuestionSelect: FC<QuestionSelectProps> = ({
                         "font-normal cursor-pointer flex items-center gap-1.5 w-full p-5 rounded-md border border-border hover:bg-muted",
                         state !== "idle" &&
                           (option.isCorrect
-                            ? "bg-green-100 border-green-600 hover:bg-green-100"
-                            : "bg-red-100 border-red-600 hover:bg-red-100")
+                            ? "bg-green-100 border-green-600 hover:bg-green-100 dark:bg-green-700 dark:border-green-800 hover:dark:bg-green-700"
+                            : "bg-red-100 border-red-600 hover:bg-red-100 dark:bg-red-700 dark:border-red-800 hover:dark:bg-red-700")
                       )}
                     >
                       <FormControl>

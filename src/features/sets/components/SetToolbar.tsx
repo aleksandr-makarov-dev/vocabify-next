@@ -29,7 +29,7 @@ const SetToolbar: FC<SetToolbarProps> = ({ setId, termsCount }) => {
 
   return (
     <nav className="flex flex-col sm:grid grid-cols-4 gap-3">
-      <Button disabled={termsCount < 4} variant="outline" size="lg" asChild>
+      <Button disabled={termsCount < 4} variant="default" asChild>
         <Link href={`/${setId}/test`}>Test</Link>
       </Button>
       <Button variant="destructive" onClick={onDelete}>

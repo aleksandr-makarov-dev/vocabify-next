@@ -5,7 +5,7 @@ import { PropsWithChildren } from "react";
 
 export default function MainLayout({ children }: PropsWithChildren) {
   return (
-    <main className="min-h-screen bg-gray-100 flex flex-col">
+    <main className="min-h-screen bg-gray-100 flex flex-col dark:bg-slate-800">
       <Navbar
         navItems={[
           { icon: <Home className="w-6 h-6" />, text: "Home", link: "/" },

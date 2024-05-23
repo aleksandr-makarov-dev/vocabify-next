@@ -6,6 +6,7 @@ import { FC, PropsWithChildren } from "react";
 import AudioProvider from "./AudioProvider";
 import { SessionProvider } from "next-auth/react";
 import LoadingView from "@/components/common/LoadingView";
+import { ThemeProvider } from "next-themes";
 
 export const AppProvider: FC<PropsWithChildren<{}>> = ({ children }) => {
   return (
@@ -16,11 +17,13 @@ export const AppProvider: FC<PropsWithChildren<{}>> = ({ children }) => {
         </div>
       }
     >
-      <QueryClientProvider client={queryClient}>
-        <SessionProvider>
-          <AudioProvider>{children}</AudioProvider>
-        </SessionProvider>
-      </QueryClientProvider>
+      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <QueryClientProvider client={queryClient}>
+          <SessionProvider>
+            <AudioProvider>{children}</AudioProvider>
+          </SessionProvider>
+        </QueryClientProvider>
+      </ThemeProvider>
     </Suspense>
   );
 };
