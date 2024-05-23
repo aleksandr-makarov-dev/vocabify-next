@@ -47,6 +47,10 @@ export default function Create() {
     });
   };
 
+  const onCancel = () => {
+    router.back();
+  };
+
   return (
     <div className="space-y-5">
       <Header
@@ -72,6 +76,7 @@ export default function Create() {
         onSubmit={onSubmit}
         isLoading={isCreateSetLoading}
         set={importedSet}
+        onCancel={onCancel}
       />
     </div>
   );

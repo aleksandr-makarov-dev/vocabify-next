@@ -22,9 +22,16 @@ interface SetFormProps {
   isLoading?: boolean;
   edit?: boolean;
   onSubmit: (values: SetFormSchema) => void;
+  onCancel: () => void;
 }
 
-const SetForm: FC<SetFormProps> = ({ set, isLoading, edit, onSubmit }) => {
+const SetForm: FC<SetFormProps> = ({
+  set,
+  isLoading,
+  edit,
+  onSubmit,
+  onCancel,
+}) => {
   const form = useForm<SetFormSchema>({
     resolver: zodResolver(setFormSchema),
     defaultValues: {
@@ -126,7 +133,12 @@ const SetForm: FC<SetFormProps> = ({ set, isLoading, edit, onSubmit }) => {
           <Button disabled={isLoading}>
             {edit ? "Save changes" : "Create"}
           </Button>
-          <Button variant="outline" disabled={isLoading}>
+          <Button
+            type="button"
+            variant="outline"
+            disabled={isLoading}
+            onClick={onCancel}
+          >
             Cancel
           </Button>
         </div>
