@@ -2,7 +2,9 @@ import { FC, useRef, useState } from "react";
 import { Question } from "./SetQuiz";
 import { cn } from "@/lib/utils";
 import { Label } from "@/components/ui/label";
-import AudioButton from "@/components/common/AudioButton";
+import AudioButton, {
+  AudioButtonHandle,
+} from "@/components/common/AudioButton";
 import { Button } from "@/components/ui/button";
 import TermSide from "@/features/terms/components/TermSide";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -40,7 +42,7 @@ const QuestionStateLabel: FC<QuestionStateLabelProps> = ({ state }) => {
         ? "Congratulations, your answer is correct!"
         : isSkipped
         ? "Give this one a try later!"
-        : "Not quite, you're still learning!"}
+        : "Not quite, you are still learning!"}
     </Label>
   );
 };
@@ -65,7 +67,7 @@ const QuestionFormFooter: FC<QuestionFormFooterProps> = ({
       ) : (
         <div className="space-x-3">
           <Button variant="ghost" type="button" onClick={skipQuestion}>
-            Don't know?
+            Don&apos;t know?
           </Button>
           <Button>Answer</Button>
         </div>
@@ -95,6 +97,7 @@ const SetQuizQuestion: FC<SetQuizQuestionProps> = ({
   });
 
   const formRef = useRef<HTMLFormElement>(null);
+  const audioButtonRef = useRef<AudioButtonHandle>(null);
 
   useKeyDown("ArrowRight", () => {
     onSkip();

@@ -7,6 +7,7 @@ import {
   CarouselItem,
   CarouselPrevious,
   CarouselNext,
+  CarouselApi,
 } from "@/components/ui/carousel";
 import { useTerms } from "@/features/terms/api/getTerms";
 import TermContent from "@/features/terms/components/TermContent";
@@ -16,13 +17,41 @@ import { useSetById } from "@/features/sets/api/getSetById";
 import { useParams } from "next/navigation";
 import SetToolbar from "@/features/sets/components/SetToolbar";
 import LoadingView from "@/components/common/LoadingView";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import useKeyDown from "@/hooks/useKeyDown";
 
 export default function Details() {
   const { id } = useParams<{ id: string }>();
 
   const { data: set, isLoading, isError, error } = useSetById({ id: id });
   const { data: terms, isLoading: isTermsLoading } = useTerms({ setId: id });
+
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+
+  useKeyDown("ArrowRight", () => {
+    if (api?.canScrollNext) {
+      api.scrollNext();
+    }
+  });
+
+  useKeyDown("ArrowLeft", () => {
+    if (api?.canScrollPrev) {
+      api.scrollPrev();
+    }
+  });
+
+  useEffect(() => {
+    if (!api) {
+      return;
+    }
+
+    setCurrent(api.selectedScrollSnap() + 1);
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap() + 1);
+    });
+  }, [api]);
 
   if (isLoading) {
     return <LoadingView />;
@@ -35,12 +64,12 @@ export default function Details() {
   return (
     <div className="space-y-5">
       <Header title={set?.title} subtitle={set?.description} />
-      <SetToolbar setId={id} />
-      <Carousel>
+      <SetToolbar termsCount={terms?.length ?? 0} setId={id} />
+      <Carousel setApi={setApi}>
         <CarouselContent>
-          {terms?.map((item) => (
+          {terms?.map((item, i) => (
             <CarouselItem key={item.id}>
-              <TermFlipCard {...item} />
+              <TermFlipCard {...item} isActive={i + 1 === current} />
             </CarouselItem>
           ))}
         </CarouselContent>

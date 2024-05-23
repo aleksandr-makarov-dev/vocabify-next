@@ -25,16 +25,16 @@ const QuestionSelect: FC<QuestionSelectProps> = ({
   state,
   setValue,
 }) => {
-  useKeyDown("1", () => {
+  useKeyDown("Digit1", () => {
     setValue("answer", options[0].value);
   });
-  useKeyDown("2", () => {
+  useKeyDown("Digit2", () => {
     setValue("answer", options[1].value);
   });
-  useKeyDown("3", () => {
+  useKeyDown("Digit3", () => {
     setValue("answer", options[2].value);
   });
-  useKeyDown("4", () => {
+  useKeyDown("Digit4", () => {
     setValue("answer", options[3].value);
   });
 

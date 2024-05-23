@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { Button } from "@/components/ui/button";
+import useKeyDown from "@/hooks/useKeyDown";
 
 interface SetQuizFinishProps {
   correct: number;
@@ -8,6 +9,8 @@ interface SetQuizFinishProps {
 }
 
 const SetQuizFinish: FC<SetQuizFinishProps> = ({ correct, total, restart }) => {
+  useKeyDown("Enter", () => restart());
+
   return (
     <div className="flex flex-col space-y-5 grow items-center justify-center">
       <div className="text-center space-y-3">

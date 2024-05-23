@@ -1,9 +1,12 @@
 "use client";
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import { a, useSpring } from "@react-spring/web";
 import Card from "@/components/common/Card";
-import AudioButton from "@/components/common/AudioButton";
+import AudioButton, {
+  AudioButtonHandle,
+} from "@/components/common/AudioButton";
 import TermSide from "./TermSide";
+import useKeyDown from "@/hooks/useKeyDown";
 
 interface TermFlipCardProps {
   text: string;
@@ -11,6 +14,7 @@ interface TermFlipCardProps {
   textTtsUrl?: string;
   definitionTtsUrl?: string;
   image?: string;
+  isActive: boolean;
 }
 
 const TermFlipCard: FC<TermFlipCardProps> = ({
@@ -19,11 +23,25 @@ const TermFlipCard: FC<TermFlipCardProps> = ({
   image,
   textTtsUrl,
   definitionTtsUrl,
+  isActive,
 }) => {
   const [flipped, setFlipped] = useState<boolean>(false);
   const { transform } = useSpring({
     transform: `perspective(600px) rotateX(${flipped ? 180 : 0}deg)`,
     config: { mass: 5, tension: 500, friction: 80 },
+  });
+  const audioButtonRef = useRef<AudioButtonHandle>(null);
+
+  useKeyDown("Space", () => {
+    if (isActive) {
+      setFlipped((prev) => !prev);
+    }
+  });
+
+  useKeyDown("KeyA", () => {
+    if (isActive) {
+      audioButtonRef.current?.playAudio();
+    }
   });
 
   return (
@@ -37,6 +55,7 @@ const TermFlipCard: FC<TermFlipCardProps> = ({
       <Card className="w-full h-full">
         {definitionTtsUrl && (
           <AudioButton
+            ref={audioButtonRef}
             className="absolute z-10 top-5 right-5"
             queue={[
               flipped

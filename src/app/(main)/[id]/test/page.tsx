@@ -18,6 +18,19 @@ const Test = () => {
     return <FormAlert isError={isError} error={error.response?.data} />;
   }
 
+  if (data && data.length < 4) {
+    return (
+      <FormAlert
+        isError={true}
+        error={{
+          status: 400,
+          title: "Error while creating test",
+          detail: "The minimal number of terms to create test is 4",
+        }}
+      />
+    );
+  }
+
   return <SetQuiz data={data} />;
 };
 

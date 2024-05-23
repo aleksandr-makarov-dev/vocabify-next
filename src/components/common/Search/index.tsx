@@ -53,7 +53,7 @@ const Search: FC<SearchProps> = ({
             </FormItem>
           )}
         />
-        <Button icon={<SearchIcon className="w-5 h-5" />}>Search</Button>
+        <Button>Search</Button>
         <Button
           variant="outline"
           onClick={() => {

@@ -7,9 +7,11 @@ import {
   FormItem,
   FormLabel,
 } from "@/components/ui/form";
+import useKeyDown from "@/hooks/useKeyDown";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FC } from "react";
+import { FC, useRef } from "react";
 import { useForm } from "react-hook-form";
+import { useLocalStorage } from "usehooks-ts";
 import { z } from "zod";
 
 export const defaultQuestionTypes = ["multiple-choice", "write"];
@@ -24,20 +26,30 @@ export type SelectTypesForm = z.infer<typeof selectTypesFormSchema>;
 
 interface SetQuizStartProps {
   onSubmit: (values: SelectTypesForm) => void;
+  types?: string[];
 }
 
-const SetQuizStart: FC<SetQuizStartProps> = ({ onSubmit }) => {
+const SetQuizStart: FC<SetQuizStartProps> = ({ onSubmit, types }) => {
   const form = useForm<SelectTypesForm>({
     resolver: zodResolver(selectTypesFormSchema),
     defaultValues: {
-      items: defaultQuestionTypes,
+      items: types ?? defaultQuestionTypes,
     },
   });
+
+  const formRef = useRef<HTMLFormElement>(null);
+
+  useKeyDown("Enter", () =>
+    formRef.current?.dispatchEvent(
+      new Event("submit", { cancelable: true, bubbles: true })
+    )
+  );
 
   return (
     <div className="w-full grow flex items-center justify-center">
       <Form {...form}>
         <form
+          ref={formRef}
           className="w-46 space-y-5 flex flex-col"
           onSubmit={form.handleSubmit(onSubmit)}
         >

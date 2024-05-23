@@ -14,7 +14,7 @@ const SetCard: FC<SetCardProps> = ({ id, title, description, image }) => {
     <article>
       <a className="group" href={`/${id}`}>
         <img
-          className="w-full h-48 object-center object-cover rounded-md mb-3"
+          className="w-full h-56 object-center object-cover rounded-md mb-3"
           src={image ?? "placeholder.png"}
           alt="Thumbnail"
         />

@@ -1,11 +1,12 @@
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect } from "react";
 
 type Handler = () => void;
 
 const useKeyDown = (key: string, handler: Handler) => {
   useEffect(() => {
     const listener = (e: KeyboardEvent) => {
-      if (e.key.toLowerCase() === key.toLowerCase()) {
+      if (e.code.toLowerCase() === key.toLowerCase()) {
+        e.preventDefault();
         handler();
       }
     };

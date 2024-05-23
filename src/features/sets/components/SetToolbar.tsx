@@ -7,9 +7,10 @@ import { useRouter } from "next/navigation";
 
 interface SetToolbarProps {
   setId: string;
+  termsCount: number;
 }
 
-const SetToolbar: FC<SetToolbarProps> = ({ setId }) => {
+const SetToolbar: FC<SetToolbarProps> = ({ setId, termsCount }) => {
   const { mutate } = useDeleteSet();
   const router = useRouter();
 
@@ -28,7 +29,7 @@ const SetToolbar: FC<SetToolbarProps> = ({ setId }) => {
 
   return (
     <nav className="flex flex-col sm:grid grid-cols-4 gap-3">
-      <Button variant="outline" size="lg" asChild>
+      <Button disabled={termsCount < 4} variant="outline" size="lg" asChild>
         <Link href={`/${setId}/test`}>Test</Link>
       </Button>
       <Button variant="destructive" onClick={onDelete}>

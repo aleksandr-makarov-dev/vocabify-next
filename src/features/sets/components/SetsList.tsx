@@ -3,15 +3,15 @@ import { FC, HTMLAttributes } from "react";
 import { useSets } from "../api/getSets";
 import SetCard from "./SetCard";
 import { cn } from "@/lib/utils";
-import { useSearchParams } from "react-router-dom";
 import FormAlert from "@/components/common/FormAlert";
 import SetsEmptyView from "./SetsEmptyView";
 import LoadingView from "@/components/common/LoadingView";
+import { useSearchParams } from "next/navigation";
 
 interface SetsListPros extends HTMLAttributes<HTMLDivElement> {}
 
 const SetsList: FC<SetsListPros> = ({ className, ...other }) => {
-  const [searchParams] = useSearchParams();
+  const searchParams = useSearchParams();
 
   const { data, isLoading, isError, error } = useSets({
     search: searchParams.get("search"),

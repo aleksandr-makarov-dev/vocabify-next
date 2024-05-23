@@ -6,6 +6,7 @@ import SetQuizStart, { SelectTypesForm } from "./SetQuizStart";
 import SetQuizQuestion from "./SetQuizQuestion";
 import SetQuizFinish from "./SetQuizFinish";
 import { clearText } from "@/lib/utils";
+import { useLocalStorage } from "usehooks-ts";
 
 export type Question = {
   term: Term;
@@ -21,6 +22,10 @@ interface SetQuizProps {
 }
 
 const SetQuiz: FC<SetQuizProps> = ({ data }) => {
+  const [value, setValue] = useLocalStorage<string[] | undefined>(
+    "question-types",
+    undefined
+  );
   const [shuffledTerms, setShuffledTerms] = useState<Term[]>(_.shuffle(data));
   const [answers, setAnswers] = useState<number>(0);
 
@@ -67,6 +72,7 @@ const SetQuiz: FC<SetQuizProps> = ({ data }) => {
 
   const onStart = (values: SelectTypesForm) => {
     questionTypes.current = values.items;
+    setValue(values.items);
     setIndex(-1);
     changeQuestion();
     setState("progress");
@@ -95,7 +101,7 @@ const SetQuiz: FC<SetQuizProps> = ({ data }) => {
 
   return (
     <Card className="min-h-[28rem] flex p-5">
-      {state === "idle" && <SetQuizStart onSubmit={onStart} />}
+      {state === "idle" && <SetQuizStart types={value} onSubmit={onStart} />}
       {state === "progress" && (
         <SetQuizQuestion
           question={question}
