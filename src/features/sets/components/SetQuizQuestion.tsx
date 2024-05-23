@@ -2,9 +2,6 @@ import { FC, useRef, useState } from "react";
 import { Question } from "./SetQuiz";
 import { cn } from "@/lib/utils";
 import { Label } from "@/components/ui/label";
-import AudioButton, {
-  AudioButtonHandle,
-} from "@/components/common/AudioButton";
 import { Button } from "@/components/ui/button";
 import TermSide from "@/features/terms/components/TermSide";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -15,6 +12,7 @@ import { Form } from "@/components/ui/form";
 import QuestionSelect from "./QuestionSelect";
 import QuestionInput from "./QuestionInput";
 import useKeyDown from "@/hooks/useKeyDown";
+import AudioButton from "@/components/common/AudioButton";
 
 export type QuestionState = "idle" | "correct" | "wrong" | "skip";
 
@@ -97,7 +95,6 @@ const SetQuizQuestion: FC<SetQuizQuestionProps> = ({
   });
 
   const formRef = useRef<HTMLFormElement>(null);
-  const audioButtonRef = useRef<AudioButtonHandle>(null);
 
   useKeyDown("ArrowRight", () => {
     onSkip();
