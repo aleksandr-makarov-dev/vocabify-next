@@ -14,7 +14,7 @@ const Profile: FC = () => {
 
   if (session.status === "authenticated") {
     return (
-      <Button size={matches ? "icon" : "default"}>
+      <Button className="shrink-0" size={matches ? "icon" : "default"}>
         <Link href="/api/auth/signout?callbackUrl=/api/auth/signin">
           {matches ? <LogOut className="w-5 h-5" /> : "Log out"}
         </Link>
@@ -23,7 +23,7 @@ const Profile: FC = () => {
   }
 
   return (
-    <Button size={matches ? "icon" : "default"}>
+    <Button className="shrink-0" size={matches ? "icon" : "default"}>
       <Link href="/api/auth/signin">
         {matches ? <LogIn className="w-5 h-5" /> : "Log in"}
       </Link>

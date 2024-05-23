@@ -22,7 +22,7 @@ const ThemeSwitch: FC = () => {
 
   return (
     <Button
-      variant="secondary"
+      variant="ghost"
       className="flex-shrink-0"
       size="icon"
       onClick={toggleTheme}
