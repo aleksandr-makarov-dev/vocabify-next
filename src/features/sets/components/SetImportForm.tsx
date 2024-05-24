@@ -4,6 +4,7 @@ import {
   FormControl,
   FormField,
   FormItem,
+  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -38,10 +39,10 @@ const SetImportForm: FC<SetImportFormProps> = ({ onSubmit, isLoading }) => {
           name="file"
           render={({ field: { onChange } }) => (
             <FormItem className="w-full">
+              <FormLabel>Import from file</FormLabel>
               <FormControl>
                 <Input
                   type="file"
-                  placeholder="Choose file"
                   accept={".html"}
                   size={MAX_FILE_SIZE}
                   onChange={(event) => {
