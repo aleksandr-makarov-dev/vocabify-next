@@ -53,15 +53,19 @@ const TermFlipCard: FC<TermFlipCardProps> = ({
       }}
     >
       <Card className="w-full h-full">
-        {definitionTtsUrl && (
+        {flipped ? (
+          definitionTtsUrl && (
+            <AudioButton
+              ref={audioButtonRef}
+              className="absolute z-10 top-5 right-5"
+              queue={[`https://quizlet.com/${definitionTtsUrl}`]}
+            />
+          )
+        ) : (
           <AudioButton
             ref={audioButtonRef}
             className="absolute z-10 top-5 right-5"
-            queue={[
-              flipped
-                ? `https://quizlet.com/${definitionTtsUrl}`
-                : `https://quizlet.com/${textTtsUrl}`,
-            ]}
+            queue={[`https://quizlet.com/${textTtsUrl}`]}
           />
         )}
         <div

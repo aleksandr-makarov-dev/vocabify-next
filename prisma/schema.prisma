@@ -81,7 +81,7 @@ model Set {
 model Term {
   id               String  @id @default(auto()) @map("_id") @db.ObjectId
   text             String  @db.String
-  definition       String  @db.String
+  definition       String?  @db.String
   image            String?
   textTtsUrl       String?
   definitionTtsUrl String?

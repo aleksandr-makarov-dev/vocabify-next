@@ -4,10 +4,10 @@ import { FC } from "react";
 
 interface TermContentProps {
   text: string;
-  definition: string;
+  definition?: string;
   image?: string | null;
   textTtsUrl?: string;
-  definitionTtsUrl?: string;
+  definitionTtsUrl?: string | null;
 }
 
 const TermContent: FC<TermContentProps> = ({
@@ -27,10 +27,9 @@ const TermContent: FC<TermContentProps> = ({
       </div>
       <AudioButton
         className="shrink-0"
-        queue={[
-          `https://quizlet.com/${textTtsUrl}`,
-          `https://quizlet.com/${definitionTtsUrl}`,
-        ]}
+        queue={[textTtsUrl, definitionTtsUrl]
+          .filter((v) => !!v)
+          .map((v) => `https://quizlet.com/${v}`)}
       />
       <img
         src={image ?? "placeholder.png"}
