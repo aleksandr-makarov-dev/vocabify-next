@@ -9,7 +9,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Import } from "lucide-react";
-import { FC } from "react";
+import { FC, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { MAX_FILE_SIZE, setImportFormSchema } from "../schemas";
 import { SetImportFormSchema } from "../types";
@@ -20,6 +20,8 @@ interface SetImportFormProps {
 }
 
 const SetImportForm: FC<SetImportFormProps> = ({ onSubmit, isLoading }) => {
+  const formRef = useRef<HTMLFormElement>(null);
+
   const form = useForm<SetImportFormSchema>({
     resolver: zodResolver(setImportFormSchema),
   });
@@ -27,6 +29,7 @@ const SetImportForm: FC<SetImportFormProps> = ({ onSubmit, isLoading }) => {
   return (
     <Form {...form}>
       <form
+        ref={formRef}
         className="flex flex-col gap-3 sm:flex-row"
         onSubmit={form.handleSubmit(onSubmit)}
       >
@@ -41,16 +44,23 @@ const SetImportForm: FC<SetImportFormProps> = ({ onSubmit, isLoading }) => {
                   placeholder="Choose file"
                   accept={".html"}
                   size={MAX_FILE_SIZE}
-                  onChange={(event) =>
-                    onChange(event.target.files && event.target.files[0])
-                  }
+                  onChange={(event) => {
+                    if (event.target.files) {
+                      onChange(event.target.files[0]);
+                      formRef.current?.dispatchEvent(
+                        new Event("submit", {
+                          cancelable: true,
+                          bubbles: true,
+                        })
+                      );
+                    }
+                  }}
                 />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button disabled={isLoading}>Import</Button>
       </form>
     </Form>
   );
