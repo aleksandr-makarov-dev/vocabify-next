@@ -130,7 +130,7 @@ const SetForm: FC<SetFormProps> = ({
           )}
         />
         <div className="flex flex-col sm:flex-row gap-3">
-          <Button disabled={isLoading || form.formState.isDirty}>
+          <Button disabled={isLoading}>
             {edit ? "Save changes" : "Create"}
           </Button>
           <Button
