@@ -76,6 +76,7 @@ export default function Details() {
         <CarouselPrevious />
         <CarouselNext />
       </Carousel>
+      <h5 className="text-xl font-medium">Terms ({terms?.length})</h5>
       <List
         className="flex flex-col gap-3"
         items={terms}

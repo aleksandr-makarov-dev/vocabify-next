@@ -7,8 +7,8 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function clearText(text: string): string {
-  return text.replace(/\s*\([^)]*\)/g, "");
+export function clearText(text?: string): string {
+  return text?.replace(/\s*\([^)]*\)/g, "") || "";
 }
 
 export function Problem(status: number, title: string, detail: string) {

@@ -1,16 +1,16 @@
 import { FormField, FormItem, FormControl } from "@/components/ui/form";
-import { QuestionFormSchema } from "@/features/sets/types";
-import { FC, useEffect, useRef } from "react";
-import { Control } from "react-hook-form";
-import { QuestionState } from "./SetQuizQuestion";
 import { Input } from "@/components/ui/input";
+import { FC, useEffect, useRef } from "react";
+import { QuestionState } from "../../providers/TestProvider";
+import { Control } from "react-hook-form";
+import { QuestionFormSchema } from "../../types";
 
-interface QuestionInputProps {
+interface TestInputWriteProps {
   control: Control<QuestionFormSchema>;
   state: QuestionState;
 }
 
-const QuestionInput: FC<QuestionInputProps> = ({ control, state }) => {
+const TestInputWrite: FC<TestInputWriteProps> = ({ state, control }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -41,4 +41,4 @@ const QuestionInput: FC<QuestionInputProps> = ({ control, state }) => {
   );
 };
 
-export default QuestionInput;
+export default TestInputWrite;

@@ -38,7 +38,7 @@ const TermFlipCard: FC<TermFlipCardProps> = ({
     }
   });
 
-  useKeyDown("KeyA", () => {
+  useKeyDown("ControlLeft", () => {
     if (isActive) {
       audioButtonRef.current?.playAudio();
     }

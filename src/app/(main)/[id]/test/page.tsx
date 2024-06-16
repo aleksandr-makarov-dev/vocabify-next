@@ -4,7 +4,7 @@ import _ from "lodash";
 import LoadingView from "@/components/common/LoadingView";
 import FormAlert from "@/components/common/FormAlert";
 import { useParams } from "next/navigation";
-import SetQuiz from "@/features/sets/components/SetQuiz";
+import SetTest from "@/features/sets/components/Test/SetTest";
 
 const Test = () => {
   const { id } = useParams<{ id: string }>();
@@ -31,7 +31,7 @@ const Test = () => {
     );
   }
 
-  return <SetQuiz data={data} />;
+  return <SetTest data={data} />;
 };
 
 export default Test;

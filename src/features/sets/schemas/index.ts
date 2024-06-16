@@ -24,5 +24,5 @@ export const setImportFormSchema = z.object({
 });
 
 export const questionFormSchema = z.object({
-  answer: z.string().min(1, "Choose one option"),
+  answer: z.string(),
 });

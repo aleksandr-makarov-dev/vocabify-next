@@ -1,11 +1,10 @@
 import Navbar from "@/components/common/Navbar";
-import Profile from "@/features/accounts/components/Profile";
 import { Home, BookText, Plus } from "lucide-react";
 import { PropsWithChildren } from "react";
 
 export default function MainLayout({ children }: PropsWithChildren) {
   return (
-    <main className="min-h-screen bg-gray-100 flex flex-col dark:bg-slate-800">
+    <main className="min-h-screen flex flex-col dark:bg-slate-900">
       <Navbar
         navItems={[
           { icon: <Home className="w-6 h-6" />, text: "Home", link: "/" },
