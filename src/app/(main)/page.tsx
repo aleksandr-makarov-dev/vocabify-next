@@ -33,24 +33,20 @@ export default function Home() {
             it to import form. After file is parsed click on create button.
           </li>
           <li>
-            <span className="font-bold">Space</span> - flip card,{" "}
+            <span className="font-bold">Space</span> - flip card
           </li>
           <li>
-            <span className="font-bold">Arrow Right</span> - next card,{" "}
+            <span className="font-bold">Arrow Right</span> - next card
           </li>
           <li>
-            <span className="font-bold">Arrow Left</span> - previous card{" "}
+            <span className="font-bold">Arrow Left</span> - previous card
           </li>
           <li>
-            <span className="font-bold">A</span> - play audio{" "}
+            <span className="font-bold">Left Ctrl</span> - play audio
           </li>
           <li>
             <span className="font-bold">Enter</span> - submit answer / next
-            question{" "}
-          </li>
-          <li>
-            <span className="font-bold">Arrow Right (Test)</span> - skip
-            question{" "}
+            question
           </li>
         </ul>
       </div>
