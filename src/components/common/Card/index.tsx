@@ -9,7 +9,7 @@ const Card: FC<CardProps> = ({ children, className, ...other }) => {
   return (
     <div
       className={cn(
-        "border-border rounded-md border p-3 bg-white dark:bg-zink-950",
+        "border-border rounded-md border p-3 bg-white dark:bg-zinc-950",
         className
       )}
       {...other}
