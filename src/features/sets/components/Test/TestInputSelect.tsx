@@ -91,7 +91,7 @@ const TestInputSelect: FC<TestInputSelectProps> = ({
                       disabled={state !== "idle"}
                     />
                   </FormControl>
-                  <FormLabel className="border border-border p-3 rounded-sm flex items-center gap-2 h-full transition-colors cursor-pointer hover:bg-gray-50 peer-aria-checked:bg-muted dark:border-slate-600 dark:hover:bg-slate-700 dark:peer-aria-checked:bg-slate-800">
+                  <FormLabel className="border border-border p-3 rounded-sm flex items-center gap-2 h-full transition-colors cursor-pointer hover:bg-gray-50 peer-aria-checked:bg-muted dark:border-zinc-600 dark:hover:bg-zinc-700 dark:peer-aria-checked:bg-zinc-800">
                     <InputResultIcon
                       state={state}
                       value={option.value}
